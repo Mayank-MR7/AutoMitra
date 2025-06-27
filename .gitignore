@@ -1,0 +1,15 @@
+# === FRONTEND (React) ===
+hire_mechanic_7/node_modules/
+hire_mechanic_7/.env
+hire_mechanic_7/build/
+
+# === BACKEND (Node.js) ===
+backend/node_modules/
+backend/.env
+backend/logs/
+backend/*.log
+
+# === Common ===
+.DS_Store
+*.log
+.env
