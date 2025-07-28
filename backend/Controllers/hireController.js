@@ -45,11 +45,23 @@ const handleGetHireDetails = async (req, res) => {
 
 const handleGetBasicHireDetails = async (req, res) => {
   try {
+    const page = parseInt(req.query.page) || 1;
+    const limit = parseInt(req.query.limit) || 10;
+    const skip = (page - 1) * limit;
+
+    const total = await Hire.countDocuments();
+
     const hires = await Hire.find({}, 'name phone email city experience')
-      .sort({ createdAt: -1 });
+      .sort({ createdAt: -1 })
+      .skip(skip)
+      .limit(limit);
+
     res.status(200).json({
       success: true,
-      data: hires
+      data: hires,
+      total,
+      page,
+      limit
     });
   } catch (error) {
     res.status(500).json({
@@ -59,5 +71,6 @@ const handleGetBasicHireDetails = async (req, res) => {
     });
   }
 };
+
 
 module.exports = { handleHireSubmit, handleGetHireDetails, handleGetBasicHireDetails };

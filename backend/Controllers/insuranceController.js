@@ -37,11 +37,23 @@ const handleGetInsuranceDetails = async (req, res) => {
 
 const handleGetBasicInsuranceDetails = async (req, res) => {
   try {
+    const page = parseInt(req.query.page) || 1;
+    const limit = parseInt(req.query.limit) || 10;
+    const skip = (page - 1) * limit;
+
+    const total = await Insurance.countDocuments();
+
     const insurances = await Insurance.find({}, 'insuredName policyNumber contactPersonNumber vehicleNumber accidentDate')
-      .sort({ createdAt: -1 });
+      .sort({ createdAt: -1 })
+      .skip(skip)
+      .limit(limit);
+
     res.status(200).json({
       success: true,
-      data: insurances
+      data: insurances,
+      total,
+      page,
+      limit
     });
   } catch (error) {
     res.status(500).json({
@@ -51,5 +63,6 @@ const handleGetBasicInsuranceDetails = async (req, res) => {
     });
   }
 };
+
 
 module.exports = { handleInsuranceSubmit, handleGetInsuranceDetails, handleGetBasicInsuranceDetails };

@@ -45,11 +45,23 @@ const handleGetFranchiseDetails = async (req, res) => {
 
 const handleGetBasicFranchiseDetails = async (req, res) => {
   try {
+    const page = parseInt(req.query.page) || 1;
+    const limit = parseInt(req.query.limit) || 10;
+    const skip = (page - 1) * limit;
+
+    const total = await Franchise.countDocuments();
+
     const franchises = await Franchise.find({}, 'name phone email city')
-      .sort({ createdAt: -1 });
+      .sort({ createdAt: -1 })
+      .skip(skip)
+      .limit(limit);
+
     res.status(200).json({
       success: true,
-      data: franchises
+      data: franchises,
+      total,
+      page,
+      limit
     });
   } catch (error) {
     res.status(500).json({
@@ -59,5 +71,6 @@ const handleGetBasicFranchiseDetails = async (req, res) => {
     });
   }
 };
+
 
 module.exports = { handleGetFranchiseDetails, handleSubmitFranchise, handleGetBasicFranchiseDetails };
