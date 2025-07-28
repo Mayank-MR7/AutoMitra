@@ -3,7 +3,7 @@ import styles from "../Hero2/Hero2.module.css";
 import carrepair from "../../assets/carrepair.jpeg";
 import carrepairtwo from "../../assets/carrepairtwo.jpg";
 import Card from "./Card";
-import carbackground from '../../assets/carbackground.jpg'; // Add your background image here
+
 
 const services = [
   {

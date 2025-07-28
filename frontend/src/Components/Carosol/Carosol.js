@@ -1,11 +1,11 @@
 import React from "react";
 import Carousel from "react-bootstrap/Carousel";
-import "bootstrap/dist/css/bootstrap.min.css"; // Ensure Bootstrap CSS is imported
+import "bootstrap/dist/css/bootstrap.min.css"; 
 import carrepair from "../../assets/carrepair.jpeg";
 import carrepairtwo from "../../assets/carrepairtwo.jpg";
 import carrepairthree from "../../assets/carrepairthree.jpg";
 import styles from "../Carosol/Carosol.module.css";
-import Button from "react-bootstrap/Button";
+
 
 const Carosol = () => {
   return (

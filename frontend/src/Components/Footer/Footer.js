@@ -1,7 +1,6 @@
 import React from "react";
 import styles from "./Footer.module.css";
 import logo from "../../assets/AutoMitra.jpg";
-import footerimage from '../../assets/footerimage.jpg'; // Add your background image here
 
 const Footer = () => {
   return (
@@ -10,18 +9,34 @@ const Footer = () => {
       <div className={styles.contactInfo}>
         <h3>Contact Us</h3>
         <p>
-          <span role="img" aria-label="location">📍</span> 5/103 Global Hill View, Gurugram
+          <span role="img" aria-label="location">
+            📍
+          </span>{" "}
+          5/103 Global Hill View, Gurugram
         </p>
         <p>
-          <span role="img" aria-label="phone">📞</span> 9023306474
+          <span role="img" aria-label="phone">
+            📞
+          </span>{" "}
+          9023306474
         </p>
         <p>
-          <span role="img" aria-label="email">📧</span>{" "}
-          <a href="mailto:contact@hiremechanics.com">contact@hiremechanics.com</a>
+          <span role="img" aria-label="email">
+            📧
+          </span>{" "}
+          <a href="mailto:contact@hiremechanics.com">
+            contact@hiremechanics.com
+          </a>
         </p>
         <p>
-          <span role="img" aria-label="website">🌐</span>{" "}
-          <a href="https://www.hire-mechanics.com" target="_blank" rel="noopener noreferrer">
+          <span role="img" aria-label="website">
+            🌐
+          </span>{" "}
+          <a
+            href="https://www.hire-mechanics.com"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             www.hire-mechanics.com
           </a>
         </p>
@@ -31,6 +46,7 @@ const Footer = () => {
       </div>
       <div className={styles.mapContainer}>
         <iframe
+          title="Google Maps Location"
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3508.123456789012!2d77.12345678901234!3d28.123456789012345!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjjCsDA3JzI0LjQiTiA3N8KwMDcnMjQuNCJF!5e0!3m2!1sen!2sin!4v1234567890123!5m2!1sen!2sin"
           allowFullScreen
           loading="lazy"

@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './KnowMore.module.css';
-import partners from "../../assets/partners.jpg";
+
 
 const KnowMore = () => {
   return (

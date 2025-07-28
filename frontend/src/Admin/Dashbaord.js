@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./Dashboard.module.css";
 import { ToastContainer, toast } from "react-toastify";
@@ -16,7 +16,7 @@ const Dashboard = () => {
   const navigate = useNavigate();
   const inactivityTimer = useRef(null);
 
-  const tabConfig = {
+  const tabConfig = useMemo(() => ({
     hire: {
       title: "Get Hired",
       endpoint: "/api/hire/basic",
@@ -48,9 +48,9 @@ const Dashboard = () => {
       endpoint: "/api/contact/basic",
       fields: ["name", "phone", "email", "comment"],
     },
-  };
+  }), []);
 
-  // Fetch Data
+  // Fetch data
   useEffect(() => {
     const fetchData = async () => {
       setIsLoading(true);
@@ -58,9 +58,7 @@ const Dashboard = () => {
         const response = await fetch(
           `${API_BASE_URL}${tabConfig[activeTab].endpoint}?page=${page}&limit=${limit}`
         );
-        if (!response.ok) {
-          throw new Error("Failed to fetch data");
-        }
+        if (!response.ok) throw new Error("Failed to fetch data");
 
         const result = await response.json();
         setData(result.data || []);
@@ -75,40 +73,35 @@ const Dashboard = () => {
     };
 
     fetchData();
-  }, [activeTab, page , limit, tabConfig]);
+  }, [activeTab, page, limit, tabConfig]);
 
-  // Handle tab switch
+  // Tab click handler
   const handleTabClick = (tabKey) => {
     setActiveTab(tabKey);
     setPage(1);
   };
 
- 
+  // Prevent back navigation
   useEffect(() => {
     window.history.pushState(null, "", window.location.href);
-    const handlePopState = () => {
-      navigate("/", { replace: true });
-    };
+    const handlePopState = () => navigate("/", { replace: true });
     window.addEventListener("popstate", handlePopState);
-    return () => {
-      window.removeEventListener("popstate", handlePopState);
-    };
+    return () => window.removeEventListener("popstate", handlePopState);
   }, [navigate]);
 
-  // ⏱️ Auto-redirect after 10 minutes of inactivity
+  // Auto redirect on inactivity
   useEffect(() => {
     const resetTimer = () => {
       if (inactivityTimer.current) clearTimeout(inactivityTimer.current);
       inactivityTimer.current = setTimeout(() => {
         toast.warn("Session expired due to inactivity. Redirecting...");
         navigate("/", { replace: true });
-      }, 10 * 60 * 1000); // 10 minutes
+      }, 10 * 60 * 1000);
     };
 
     const activityEvents = ["mousemove", "mousedown", "click", "keydown", "scroll", "touchstart"];
     activityEvents.forEach((event) => window.addEventListener(event, resetTimer));
-
-    resetTimer(); // start timer on mount
+    resetTimer();
 
     return () => {
       activityEvents.forEach((event) => window.removeEventListener(event, resetTimer));
@@ -162,7 +155,6 @@ const Dashboard = () => {
               </tbody>
             </table>
 
-            {/* Pagination Controls */}
             {totalPages > 1 && (
               <div className={styles.pagination}>
                 <button
