@@ -83,7 +83,7 @@ const Dashboard = () => {
     setPage(1);
   };
 
-  // 🛑 Redirect to homepage on browser "back"
+ 
   useEffect(() => {
     window.history.pushState(null, "", window.location.href);
     const handlePopState = () => {
