@@ -75,7 +75,7 @@ const Dashboard = () => {
     };
 
     fetchData();
-  }, [activeTab, page]);
+  }, [activeTab, page , limit, tabConfig]);
 
   // Handle tab switch
   const handleTabClick = (tabKey) => {
