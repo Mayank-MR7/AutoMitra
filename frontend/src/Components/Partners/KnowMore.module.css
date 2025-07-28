@@ -1,0 +1,100 @@
+.knowMorePage {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+  padding: 20px;
+  animation: fadeIn 1.5s ease;
+}
+
+.hero {
+  text-align: center;
+  background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('../../assets/partners.jpg') center/cover;
+  color: white;
+  padding: 80px 20px;
+  border-radius: 12px;
+}
+
+.section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 50px 0;
+  gap: 30px;
+  animation: slideUp 1s ease;
+}
+
+.imageLeft,
+.imageRight {
+  flex: 1;
+  max-width: 400px;
+  border-radius: 10px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.imageLeft:hover,
+.imageRight:hover {
+  transform: scale(1.05);
+}
+
+.textContent {
+  flex: 2;
+}
+
+.textContent h2 {
+  font-size: 28px;
+  margin-bottom: 10px;
+  color: #0455bf;
+}
+
+.textContent p, .textContent ul {
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+.textContent ul {
+  list-style-type: disc;
+  margin-left: 20px;
+}
+
+.cta {
+  text-align: center;
+  margin: 80px 0 30px;
+  animation: fadeIn 1.5s ease;
+}
+
+.ctaButton {
+  background-color: #0455bf;
+  color: white;
+  padding: 14px 30px;
+  font-size: 16px;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.ctaButton:hover {
+  background-color: #033c90;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(50px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .section {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .imageLeft, .imageRight {
+    max-width: 100%;
+  }
+}

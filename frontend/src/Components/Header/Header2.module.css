@@ -1,0 +1,250 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.para {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f69d07;
+    color: rgb(255, 255, 255);
+    width: 100%;
+    height: 70px;
+    letter-spacing: 1px;
+    font-size: 1.6rem;* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.Header {
+  position: relative;
+  background-image: url(../../assets/carrepair.jpeg);
+  width: auto;
+  height: 80px;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 20px ;
+  letter-spacing: 1.3px;
+}
+
+.Header::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 1;
+}
+
+.logoContainer img {
+  width:auto;
+  height: 260px;
+ 
+  padding: 10px;
+  z-index: 2;
+  position: relative;
+  margin-left: 70px;
+  transition: transform 0.3s ease-in-out; /* Add hover effect */
+}
+
+.logoContainer img:hover {
+  transform: scale(1.1); /* Scale up on hover */
+}
+
+ul {
+  list-style-type: none;
+  margin-right: 70px;
+  padding: 0px;
+  display: flex;
+  z-index: 2;
+  position: relative;
+}
+
+ul li {
+  margin-left: 30px;
+}
+
+ul li a {
+  text-decoration: none;
+  color: #f69d07;
+  font-weight: bold;
+  font-size: 1.5rem;
+  padding: 10px;
+
+  transition: color 0.3s ease-in-out; /* Add hover effect */
+}
+
+ul li a:hover {
+  color: #ffffff; /* Change color on hover */
+}
+.icon{
+  color: #fff;
+  font-size: 1.3rem;
+
+}
+/* Hamburger Menu Styles */
+.navbarToggle {
+  z-index: 3; /* Ensure the toggle button is above the overlay */
+  border: none;
+  background: none;
+  color: white; /* White color for hamburger icon */
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0.5rem; /* Add some padding for better click area */
+  transition: color 0.3s ease-in-out; /* Add hover effect */
+}
+
+/* Explicitly target the Bootstrap hamburger icon */
+.navbarToggle .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='white' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+.navbarToggle:focus {
+  outline: none; /* Remove default focus outline */
+  box-shadow: none; /* Remove Bootstrap's default focus shadow */
+}
+
+.navbarToggle:hover {
+  color: #f69d07; /* Change color on hover */
+}
+
+.navbarToggle:hover .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%23f69d07' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+.offcanvasMenu {
+  background-color: rgba(0, 0, 0, 0.9); /* Dark background for offcanvas */
+  color: #f69d07; /* Text color */
+}
+
+.offcanvasHeader {
+  border-bottom: 1px solid #f69d07; /* Add a border to the header */
+}
+
+.offcanvasBody {
+  padding: 20px;
+}
+
+.offcanvasBody .nav-link {
+  color: #f69d07; /* Link color */
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  transition: color 0.3s ease-in-out; /* Add hover effect */
+}
+
+.offcanvasBody .nav-link:hover {
+  color: #fff; /* Hover color */
+}
+
+/* Mobile Layout */
+@media (max-width: 991.98px) {
+  .Header {
+    padding: 0 10px; /* Reduce padding for mobile */
+  }
+
+  .logoContainer img {
+    margin-left: 0; /* Remove left margin for mobile */
+    margin-right: 20px; /* Add right margin for mobile */
+  }
+
+  .navbarToggle {
+    order: -1; /* Move hamburger icon to the left */
+  }
+
+  .desktopNav {
+    display: none; /* Hide desktop navigation on mobile */
+  }
+}
+
+@media (max-width: 480px) {
+  .logoContainer img {
+    width: 120px; /* Smaller logo for mobile */
+  }
+
+  .navbarToggle {
+    font-size: 1.2rem; /* Smaller hamburger icon for mobile */
+  }
+}
+/* Dropdown Styles for Desktop */
+/* Dropdown Styles for Desktop */
+.dropdown {
+  position: relative;
+}
+
+.dropdownMenu {
+ opacity: 0;
+  visibility: hidden;
+  position: absolute;
+  top: 180%; /* 👈 Adjust this value to add more space */
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.9);
+  border: 1px solid #f69d07;
+  padding: 10px;
+  z-index: 999;
+  min-width: 180px;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.dropdownMenu a {
+  display: block;
+  color: #f69d07;
+  padding: 8px 16px;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: color 0.3s ease-in-out;
+}
+
+.dropdownMenu a:hover {
+  color: #fff;
+}
+.dropdownMenu:hover {
+  display: block;
+}
+.dropdown:hover .dropdownMenu {
+opacity: 1;
+  visibility: visible;
+}
+
+/* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+
+    font-weight: 400;
+    overflow: hidden; /* Ensure the text doesn't overflow */
+    position: relative;
+}
+
+.para p {
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-shadow: 2px 2px 2px #ff0000;
+    white-space: nowrap; /* Prevent text from wrapping */
+    position: absolute;
+    animation: slide 11s linear infinite; /* Adjust time as needed */
+   
+   
+}
+
+.para p::before {
+    content: "⚠️"; /* Add your icon here (you can use an emoji or a font icon) */
+    margin-right: 10px; /* Space between the icon and text */
+}
+
+@keyframes slide {
+    0% {
+        transform: translateX(100%); /* Start from the right */
+    }
+    100% {
+        transform: translateX(-100%); /* Move to the left */
+    }
+}
+
+.span{
+    padding: 25px;
+    
+}
