@@ -1,6 +1,7 @@
 /* Card Styles for Hero3 */
 .card {
     width: 100%;
+   gap: 30px;
    
     height: 450px; /* Increased height */
     border-radius: 15px;
@@ -11,7 +12,6 @@
     display: flex;
     flex-direction: column;
     text-align: center;
-    margin: 30px;
     position: relative;
     border: 12px solid transparent;
     background-clip: padding-box;

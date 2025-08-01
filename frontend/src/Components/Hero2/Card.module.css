@@ -3,7 +3,7 @@
     width: 100%;
     max-width: 300px; /* Fixed width for desktop */
     height: 400px; /* Fixed height */
-    border-radius: 15px;
+   
     box-shadow: rgba(0, 0, 0, 0.6) 0px 5px 15px;
     border: 2px solid transparent;
      transform: translateY(-10px);
@@ -17,7 +17,7 @@
     display: flex;
     flex-direction: column;
     text-align: center;
-    margin: 10px;
+   
     position: relative;
   }
   

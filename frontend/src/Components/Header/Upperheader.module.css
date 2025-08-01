@@ -6,86 +6,117 @@
 }
 
 .header {
-  height: 100px; /* match Header */
-  background-color: #fcf3ad;
+  width: auto;
+  height: 100px;
   display: flex;
+  justify-content: space-around;
   align-items: center;
-  justify-content: space-evenly;
-  padding: 0 20px;
-  gap: 1rem;
+  background-color: #fcf3ad;
 }
 
-/* Logo */
-.logo {
+/* Logo container using background image */
+.logoContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 300px;
-  height: auto;
-  object-fit: contain;
+  height: 100px;
+  /* background-image: url("../../assets/automitralogo.png"); */
+  /* background-repeat: no-repeat; */
+  /* background-color: #050200; */
+  background-position: center;
+  background-size: contain;
+ 
 }
 
 /* Title */
 .title {
-  font-size: 1.8rem;
-  color: #044c80;
+  white-space: nowrap;
+  font-size: 1.9rem;
+  font-weight: 900;
+  color: #055a97;
   font-weight: 700;
   font-family: Arial, Helvetica, sans-serif;
-  white-space: nowrap;
-  flex: 1;
-  text-align: center;
+  letter-spacing: 2px;
+  margin-top: 0.3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /* Contact */
 .contact {
-  font-size: 1rem;
+  white-space: nowrap;
+  font-size: 1.2rem;
   color: #ef4a40;
   font-weight: 700;
   font-family: Arial, Helvetica, sans-serif;
-  white-space: nowrap;
-  text-align: right;
-  margin-right: 20px;
+  letter-spacing: 1px;
+margin-right: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-top: 1rem;
 }
-
+ 
 /* Tablet */
-@media (max-width: 768px) {
+@media (max-width: 800px) {
   .header {
-    padding: 0 10px;
+ 
   }
 
-  .logo {
-    width: 160px;
-  }
+  /* .logoContainer {
+    width: 300px;
+    height: 200px;
+    background: url("../../assets/automitralogo.png") no-repeat center;
+    background-size: contain; 
+    background-color: #ffffff;
+  } */
 
   .title {
-    font-size: 1.3rem;
+    font-size: 1.1rem;
+    margin-top: -10px;
   }
 
   .contact {
-    font-size: 0.9rem;
+    font-size: 0.7rem;
+  
   }
 }
 
 /* Mobile */
-@media (max-width: 480px) {
+@media (max-width: 900px) {
   .header {
     flex-direction: column;
     align-items: center;
     justify-content: center;
     height: auto;
-    padding: 8px 12px;
-    gap: 6px;
+  
+    
   }
-
-  .logo {
-    width: 140px;
-  }
+  /* 
+  .logoContainer {
+    width: 370px;
+    height: 200px;
+    background: url("../../assets/automitralogo.png") no-repeat center;
+    background-size: contain; 
+    background-color: #ffffff;
+  } */
 
   .title {
     font-size: 1.2rem;
     text-align: center;
+    margin-top: 7px;
+     
   }
 
   .contact {
-    font-size: 0.85rem;
+    font-size: 0.9rem;
     text-align: center;
-    margin-right: 0;
+    margin-top: -3px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    padding-right: 10px;
   }
 }

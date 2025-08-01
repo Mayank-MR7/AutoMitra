@@ -7,7 +7,7 @@ const PartnerHero1 = () => {
             <div className={styles.imageBox}>
               <h1 className={styles["overlay-text"]}>Our Valued Partners,the pillars of our success</h1>
           
-              <img src={partners} alt="partners" />
+              <img src={partners} alt="partners"  loading="eager" />
             </div>
           </div>
 }

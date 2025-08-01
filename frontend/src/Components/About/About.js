@@ -1,7 +1,6 @@
 import React from "react";
 import styles from "./About.module.css";
 
-// Import images (replace with your actual image paths)
 import heroImage from "../../assets/carrepair.jpeg";
 import missionImage from "../../assets/carrepairtwo.jpg";
 import workforceImage from "../../assets/carrepairthree.jpg";

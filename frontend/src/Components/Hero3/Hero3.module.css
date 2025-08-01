@@ -27,10 +27,10 @@
 .underline {
   width: 800px;
   height: 5px;
- 
   background-color: white;
   margin: 0 auto; /* Center the underline */
   margin-top: -30px; /* Adjust this value to position it just below the subheading */
+margin-bottom: 30px;
 }
 
 .cardContainer {
@@ -45,28 +45,28 @@
 /* Responsive Styles */
 @media (max-width: 768px) {
   .heading {
-      font-size: 2rem; /* Slightly smaller font size */
+      font-size: 2rem; 
   }
 
   .subheading {
-      font-size: 1rem; /* Slightly smaller font size */
+      font-size: 1rem;
   }
 
   .cardContainer {
-      gap: 20px; /* Reduced gap for smaller screens */
+      gap: 20px; 
   }
 }
 
 @media (max-width: 480px) {
   .heading {
-      font-size: 1.8rem; /* Smaller font size for mobile */
+      font-size: 1.8rem; 
   }
 
   .subheading {
-      font-size: 0.9rem; /* Smaller font size for mobile */
+      font-size: 0.9rem; 
   }
 
-  .cardContainer {
-      gap: 15px; /* Reduced gap for mobile */
-  }
+  /* .cardContainer {
+      gap: 15px; 
+  } */
 }

@@ -423,7 +423,7 @@
     line-height: 1.6;
 }
 
-/* Call to Action Section - unchanged */
+
 .ctaSection {
     padding: 4rem 2rem;
     text-align: center;
@@ -466,7 +466,57 @@
     border-radius: 80px;
   }
 }
+@media (min-width: 576px) and  (max-width: 900px){
+.missionSection {
+    flex-direction: column;
+    text-align: center;
+    padding: 2rem 1rem;
+  }
 
+  .missionImage img {
+    width: 80vw;
+    height: auto;
+    border-radius: 50%;
+    margin: 20px auto;
+  }
+
+  .missionContent {
+    max-width: 100%;
+    margin: 0 auto;
+  }
+
+  .missionContent h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .whatWeDoSection h2 {
+    font-size: 1.7rem;
+  }
+
+  .gridContainer {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .gridItem {
+    padding: 2rem 1rem;
+  }
+
+  .gridImage {
+    width: 100px;
+    height: 100px;
+  }
+
+  .gridItem h3 {
+    font-size: 1.2rem;
+  }
+
+  .gridItem p {
+    font-size: 0.95rem;
+  }
+
+}
 @media (max-width: 576px) {
   .aboutContainer {
     margin: 15px;
@@ -572,4 +622,72 @@
   .missionContent p {
     font-size: 0.95rem;
   }
+
+  
+}
+
+
+@media (min-width: 750px ) {
+  .missionSection {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 33px solid #ffffff;
+    background-color: #eeeabf;
+}
+
+.missionImage{
+    position: relative;
+    display: inline-block;
+}
+
+.missionImage img {
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+    border: 10px solid #F2E2B1;
+    box-shadow: rgba(0, 0, 0, 0.6) 0px 5px 18px;
+    margin: 40px;
+    position: relative;
+    z-index: 1;
+}
+
+.missionImage::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 50%;
+    border: 30px solid transparent;
+    border-top-color: #f69d07;
+    animation: rotateBorder 3s linear infinite;
+    z-index: 0;
+}
+
+.missionContent {
+    max-width: 600px;
+    width: 100%;
+    margin: 40px auto;
+    padding: 0 15px;
+    box-sizing: border-box;
+}
+
+.missionContent h2 {
+    font-size: 2.7rem;
+    margin-bottom: 2rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: #f69d07;
+    font-family: serif;
+}
+
+.missionContent p {
+    width: 100%;
+    text-align: justify;
+    font-size: 1.05rem;
+    color: #282929;
+}
+  
 }
