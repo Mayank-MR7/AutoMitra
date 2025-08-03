@@ -1,0 +1,54 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.para {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    background-color: #ff0000;
+    color: rgb(255, 255, 255);
+    width: 100%;
+    height: 50px;
+    letter-spacing: 1px;
+    font-size: 1.2rem;
+   border: 1px solid white;
+    font-weight: 400;
+    overflow: hidden; /* Ensure the text doesn't overflow */
+    position: relative;
+}
+
+.para p {
+    
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-shadow: 2px 2px 2px #8d0303;
+  margin-top: 10px;
+    white-space: nowrap; /* Prevent text from wrapping */
+    position: absolute;
+    animation: slide 15s linear infinite; /* Adjust time as needed */
+   
+   
+}
+
+.para p::before {
+    content: "⚠️"; /* Add your icon here (you can use an emoji or a font icon) */
+    margin-right: 10px; /* Space between the icon and text */
+}
+
+@keyframes slide {
+    0% {
+        transform: translateX(100%); /* Start from the right */
+    }
+    100% {
+        transform: translateX(-100%); /* Move to the left */
+    }
+}
+
+.span {
+  margin: 0 10px;
+}
+

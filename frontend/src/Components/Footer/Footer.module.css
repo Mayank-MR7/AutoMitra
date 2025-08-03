@@ -1,0 +1,138 @@
+/* Footer Styles */
+.footer {
+  position: relative; /* Make footer a positioning context */
+  background-image: url("../../assets/footerimage.jpg"); /* Add your background image here */
+  background-size: cover; /* Cover the entire footer */
+  background-position: center; /* Center the image */
+  color: white;
+  padding: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap; /* Wrap content on smaller screens */
+  gap: 30px; /* Gap between sections */
+  z-index: 1; /* Ensure content is above the overlay */
+  border-top: 6px solid #f69d07;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8); /* Dark overlay with 60% opacity */
+  z-index: -1; /* Place overlay behind the content */
+}
+
+.contactInfo {
+  max-width: 400px; /* Fixed width for contact info */
+  z-index: 2; /* Bring content above the overlay */
+}
+
+.contactInfo h3 {
+  font-size: 2.3rem; /* Larger font size */
+  font-weight: bold;
+  margin-bottom: 20px; /* Increased margin */
+  color: #f69d07; /* Neon orange */
+}
+
+.contactInfo p {
+  font-size: 1.3rem;
+  color: #cccccc; /* Light gray text */
+  margin-bottom: 15px; /* Increased margin */
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Gap between icon and text */
+}
+
+.contactInfo a {
+  color: #f69d07; /* Neon orange */
+  text-decoration: none;
+  transition: color 0.3s ease-in-out;
+}
+
+.contactInfo a:hover {
+  color: #ffffff; /* White on hover */
+}
+
+.logoContainer {
+  flex: 1; /* Take remaining space */
+  display: flex;
+  justify-content: center; /* Center the logo */
+  align-items: center;
+  padding: 20px; /* Add padding */
+  border-radius: 15px; /* Rounded corners */
+  z-index: 2; /* Bring content above the overlay */
+}
+
+.logoContainer img {
+width: 350px; /* Adjust logo size */
+  height: auto;
+  transition: transform 0.3s ease-in-out;
+  box-shadow: rgba(0, 0, 0, 0.9) 0px 5px 15px;
+}
+
+.logoContainer img:hover {
+  transform: scale(1.1); /* Hover effect */
+}
+
+.mapContainer {
+  flex: 1; /* Take remaining space */
+  max-width: 600px; /* Fixed width for map */
+  height: 300px; /* Fixed height for map */
+  border-radius: 15px; /* Rounded corners */
+  overflow: hidden; /* Hide overflow */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+  z-index: 2; /* Bring content above the overlay */
+}
+
+.mapContainer iframe {
+  width: 100%;
+  height: 100%;
+  border: none; /* Remove iframe border */
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .footer {
+    flex-direction: column; /* Stack sections vertically */
+    text-align: center; /* Center align text */
+  }
+
+  .contactInfo {
+    max-width: 100%; /* Full width on smaller screens */
+  }
+
+  .contactInfo p {
+    justify-content: center; /* Center align icons and text */
+  }
+
+  .logoContainer {
+    order: 1; /* Move logo to the top on smaller screens */
+    margin-bottom: 20px; /* Add margin below logo */
+  }
+
+  .mapContainer {
+    width: 100%; /* Full width on smaller screens */
+    height: 250px; /* Adjusted height for smaller screens */
+  }
+}
+
+@media (max-width: 480px) {
+  .contactInfo h3 {
+    font-size: 1.5rem; /* Smaller font size for mobile */
+  }
+
+  .contactInfo p {
+    font-size: 0.9rem; /* Smaller font size for mobile */
+  }
+
+  .logoContainer img {
+    max-width: 120px; /* Smaller logo for mobile */
+  }
+
+  .mapContainer {
+    height: 200px; /* Adjusted height for mobile */
+  }
+}

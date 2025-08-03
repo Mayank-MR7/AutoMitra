@@ -1,0 +1,72 @@
+/* Hero3 Styles */
+.container {
+  text-align: center;
+  padding: 80px 20px; /* Increased padding */
+  background-image: linear-gradient(135deg, #f69d07, #0561b4 , #f69d07);
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+}
+
+.heading {
+  font-size: 2.5rem; /* Larger font size */
+  font-weight: bold;
+  margin-bottom: 20px; /* Increased margin */
+  color: #ffffff; /* Secondary color */
+  text-transform: uppercase; /* Uppercase heading */
+  letter-spacing: 2px; /* Added letter spacing */
+}
+
+.subheading {
+  font-size: 1.4rem;
+  color: #ffffff; /* Slightly darker text color */
+  margin-bottom: 50px; /* Increased margin */
+  margin-top: -10px;
+}
+
+.underline {
+  width: 800px;
+  height: 5px;
+  background-color: white;
+  margin: 0 auto; /* Center the underline */
+  margin-top: -30px; /* Adjust this value to position it just below the subheading */
+margin-bottom: 30px;
+}
+
+.cardContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive grid */
+  gap: 30px; /* Increased gap between cards */
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-bottom: 60px; /* Increased padding */
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .heading {
+      font-size: 2rem; 
+  }
+
+  .subheading {
+      font-size: 1rem;
+  }
+
+  .cardContainer {
+      gap: 20px; 
+  }
+}
+
+@media (max-width: 480px) {
+  .heading {
+      font-size: 1.8rem; 
+  }
+
+  .subheading {
+      font-size: 0.9rem; 
+  }
+
+  /* .cardContainer {
+      gap: 15px; 
+  } */
+}

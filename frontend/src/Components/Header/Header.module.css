@@ -1,0 +1,265 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.Header {
+  position: relative;
+  background-image: url(../../assets/carrepair.jpeg);
+  width: auto;
+  height: 80px;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 20px;
+  letter-spacing: 1.3px;
+}
+
+.Header::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 1;
+}
+
+.logoContainer img {
+  width: auto;
+  height: 260px;
+  padding: 10px;
+  z-index: 2;
+  position: relative;
+  margin-left: 70px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.logoContainer img:hover {
+  transform: scale(1.1);
+}
+
+ul {
+  list-style-type: none;
+  margin-right: 70px;
+  padding: 0px;
+  display: flex;
+  z-index: 2;
+  position: relative;
+}
+
+ul li {
+  margin-left: 30px;
+}
+
+ul li a {
+  text-decoration: none;
+  color: #f69d07;
+  font-weight: bold;
+  font-size: 1.5rem;
+  padding: 10px;
+  transition: color 0.3s ease-in-out;
+}
+
+ul li a:hover {
+  color: #ffffff;
+}
+
+.icon {
+  color: #fff;
+  font-size: 1.3rem;
+}
+
+/* Hamburger Menu Styles */
+.navbarToggle {
+  z-index: 3;
+  border: none;
+  background: none;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  transition: color 0.3s ease-in-out;
+}
+
+/* Bootstrap Hamburger Icon */
+.navbarToggle .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='white' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+.navbarToggle:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.navbarToggle:hover {
+  color: #f69d07;
+}
+
+.navbarToggle:hover .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%23f69d07' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+/* Offcanvas (mobile menu) */
+.offcanvasMenu {
+  background-color: rgba(0, 0, 0, 0.9);
+  color: #f69d07;
+}
+
+.offcanvasHeader {
+  border-bottom: 1px solid #f69d07;
+}
+
+.offcanvasBody {
+  padding: 20px;
+}
+
+.offcanvasBody .nav-link {
+  color: #f69d07;
+  font-size: 1.5rem; /* ⬅️ Increased from 1.2rem */
+  margin-bottom: 16px; /* ⬅️ Slightly more spacing */
+  font-weight: 600; /* ⬅️ Optional: bolder look */
+  padding: 10px 0; /* ⬅️ Better tap area for mobile */
+  transition: color 0.3s ease-in-out;
+}
+
+.offcanvasBody .nav-link:hover {
+  color: #fff;
+}
+
+/* Mobile-specific layout */
+/* @media (max-width: 991.98px) {
+  .Header {
+    padding: 0 10px;
+  }
+
+  .logoContainer img {
+    margin-left: 0;
+    margin-right: 20px;
+  }
+
+  .navbarToggle {
+    order: -1;
+  }
+
+  .desktopNav {
+    display: none;
+  }
+} */
+
+/* Override for mobile hamburger placement */
+@media (max-width: 991.98px) {
+  .Header {
+    justify-content: space-between; /* ✅ Space out content */
+  }
+
+  .navbarToggle {
+    order: 1;
+    font-size: 1.7rem;
+    color: #f69d07; /* ✅ Set icon color for visibility */
+    background-color: transparent;
+    border: 2px solid #f69d07;
+    border-radius: 5px;
+    padding: 6px 10px;
+    margin-left: auto; /* ✅ Push to right side */
+  }
+
+  /* Optional: if you want it on the left instead of right */
+  /* .navbarToggle {
+    margin-left: 0;
+    margin-right: auto;
+  } */
+}
+
+
+@media (max-width: 480px) {
+  .logoContainer img {
+    width: 120px;
+  }
+
+  .navbarToggle {
+    font-size: 1.2rem;
+  }
+}
+
+/* Desktop Dropdown */
+.dropdown {
+  position: relative;
+}
+
+.dropdownMenu {
+  opacity: 0;
+  visibility: hidden;
+  position: absolute;
+  top: 180%;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.9);
+  border: 1px solid #f69d07;
+  padding: 10px;
+  z-index: 999;
+  min-width: 180px;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.dropdownMenu a {
+  display: block;
+  color: #f69d07;
+  padding: 8px 16px;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: color 0.3s ease-in-out;
+}
+
+.dropdownMenu a:hover {
+  color: #fff;
+}
+
+.dropdownMenu:hover {
+  display: block;
+}
+
+.dropdown:hover .dropdownMenu {
+  opacity: 1;
+  visibility: visible;
+}
+
+.navLink {
+  color: #f69d07 !important;
+  font-size: 1.6rem !important; /* Increased size */
+  font-weight: 600;
+  padding: 12px 0;
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.navLink:hover {
+  color: #ffffff !important;
+}
+
+/* ======================= */
+/* Mobile Dropdown Inside Offcanvas */
+.dropdownMenuMobile {
+  padding-left: 1rem;
+  margin-bottom: 1rem;
+}
+
+.dropdownMenuMobile a {
+  font-size: 1.4rem !important;
+  font-weight: 600;
+  color: #f69d07;
+  margin-top: 8px;
+  display: block;
+  padding-left: 1rem;
+  text-decoration: none;
+}
+
+.dropdownMenuMobile a:hover {
+  color: #ffffff;
+}
