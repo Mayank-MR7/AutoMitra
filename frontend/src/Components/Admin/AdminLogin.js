@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import carrepairtwo from "../assets/carrepairtwo.jpg";
+import carrepairtwo from "../../assets/carrepairtwo.jpg";
 import styles from "./AdminLogin.module.css";
 
 const AdminLogin = () => {
