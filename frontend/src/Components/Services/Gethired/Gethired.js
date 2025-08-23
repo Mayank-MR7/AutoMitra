@@ -5,7 +5,9 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 // API endpoint configuration
-const API_BASE_URL = process.env.REACT_APP_API_URL || "http://localhost:8000";
+// const API_BASE_URL = process.env.REACT_APP_API_URL || "http://localhost:8000";
+const API_BASE_URL = "https://automitra.onrender.com/" || "http://localhost:8000";
+
 const HIRE_API_URL = `${API_BASE_URL}/api/hire`;
 
 
