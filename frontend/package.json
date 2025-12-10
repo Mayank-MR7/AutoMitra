@@ -2,6 +2,10 @@
   "name": "project",
   "version": "0.1.0",
   "private": true,
+  "sideEffects": [
+    "**/*.css",
+    "**/*.scss"
+  ],
   "dependencies": {
     "@fortawesome/free-solid-svg-icons": "^7.0.0",
     "@fortawesome/react-fontawesome": "^0.2.3",
