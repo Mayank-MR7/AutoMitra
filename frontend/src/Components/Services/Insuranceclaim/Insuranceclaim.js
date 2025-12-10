@@ -2,7 +2,7 @@ import React, { useState, useCallback } from "react";
 import styles from "../Insuranceclaim/Insuranceclaim.module.css";
 import carrepairtwo from "../../../assets/carrepairtwo.jpg";
 import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+
 
 const API_BASE_URL = process.env.REACT_APP_API_URL || "http://localhost:8000";
 const INSURANCE_API_URL = `${API_BASE_URL}/api/insurance`;
