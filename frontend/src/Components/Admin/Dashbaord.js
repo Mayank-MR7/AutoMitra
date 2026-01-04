@@ -142,18 +142,28 @@ const Dashboard = () => {
         return;
       }
 
-      // Pick only required fields
+      // 🔹 Get ALL keys dynamically from first object
+      const allKeys = Object.keys(exportData[0]);
+
+      // 🔹 Build rows dynamically
       const formattedData = exportData.map((item, index) => {
         const row = { "Sl No": index + 1 };
 
-        tabConfig[activeTab].fields.forEach((field) => {
-          row[field.toUpperCase()] = item[field] || "-";
+        allKeys.forEach((key) => {
+          let value = item[key];
+
+          // Handle objects & arrays safely
+          if (typeof value === "object" && value !== null) {
+            value = JSON.stringify(value);
+          }
+
+          row[key.replace(/_/g, " ").toUpperCase()] = value ?? "-";
         });
 
         return row;
       });
 
-      // Create worksheet & workbook
+      // Create Excel file
       const worksheet = XLSX.utils.json_to_sheet(formattedData);
       const workbook = XLSX.utils.book_new();
       XLSX.utils.book_append_sheet(
@@ -162,10 +172,9 @@ const Dashboard = () => {
         tabConfig[activeTab].title
       );
 
-      // Download file
       XLSX.writeFile(
         workbook,
-        `${tabConfig[activeTab].title.replace(/\s+/g, "_")}_Data.xlsx`
+        `${tabConfig[activeTab].title.replace(/\s+/g, "_")}_FULL_DATA.xlsx`
       );
 
       toast.success("Excel file downloaded");
