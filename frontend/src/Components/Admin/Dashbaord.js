@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import styles from "./Dashboard.module.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import * as XLSX from "xlsx";
 
 const API_BASE_URL = process.env.REACT_APP_API_URL || "http://localhost:8000";
 
@@ -16,39 +17,42 @@ const Dashboard = () => {
   const navigate = useNavigate();
   const inactivityTimer = useRef(null);
 
-  const tabConfig = useMemo(() => ({
-    hire: {
-      title: "Get Hired",
-      endpoint: "/api/hire/basic",
-      fields: ["name", "phone", "email", "city", "experience"],
-    },
-    mechanic: {
-      title: "Hire Mechanic",
-      endpoint: "/api/mechanic/basic",
-      fields: ["name", "phone", "email", "city", "service"],
-    },
-    insurance: {
-      title: "Insurance Claim",
-      endpoint: "/api/insurance/basic",
-      fields: [
-        "insuredName",
-        "policyNumber",
-        "contactPersonNumber",
-        "vehicleNumber",
-        "accidentDate",
-      ],
-    },
-    franchise: {
-      title: "Get Franchise",
-      endpoint: "/api/franchise/basic",
-      fields: ["name", "phone", "email", "city"],
-    },
-    contact: {
-      title: "Contact Us",
-      endpoint: "/api/contact/basic",
-      fields: ["name", "phone", "email", "comment"],
-    },
-  }), []);
+  const tabConfig = useMemo(
+    () => ({
+      hire: {
+        title: "Get Hired",
+        endpoint: "/api/hire/basic",
+        fields: ["name", "phone", "email", "city", "experience"],
+      },
+      mechanic: {
+        title: "Hire Mechanic",
+        endpoint: "/api/mechanic/basic",
+        fields: ["name", "phone", "email", "city", "service"],
+      },
+      insurance: {
+        title: "Insurance Claim",
+        endpoint: "/api/insurance/basic",
+        fields: [
+          "insuredName",
+          "policyNumber",
+          "contactPersonNumber",
+          "vehicleNumber",
+          "accidentDate",
+        ],
+      },
+      franchise: {
+        title: "Get Franchise",
+        endpoint: "/api/franchise/basic",
+        fields: ["name", "phone", "email", "city"],
+      },
+      contact: {
+        title: "Contact Us",
+        endpoint: "/api/contact/basic",
+        fields: ["name", "phone", "email", "comment"],
+      },
+    }),
+    []
+  );
 
   // Fetch data
   useEffect(() => {
@@ -99,15 +103,77 @@ const Dashboard = () => {
       }, 10 * 60 * 1000);
     };
 
-    const activityEvents = ["mousemove", "mousedown", "click", "keydown", "scroll", "touchstart"];
-    activityEvents.forEach((event) => window.addEventListener(event, resetTimer));
+    const activityEvents = [
+      "mousemove",
+      "mousedown",
+      "click",
+      "keydown",
+      "scroll",
+      "touchstart",
+    ];
+    activityEvents.forEach((event) =>
+      window.addEventListener(event, resetTimer)
+    );
     resetTimer();
 
     return () => {
-      activityEvents.forEach((event) => window.removeEventListener(event, resetTimer));
+      activityEvents.forEach((event) =>
+        window.removeEventListener(event, resetTimer)
+      );
       if (inactivityTimer.current) clearTimeout(inactivityTimer.current);
     };
   }, [navigate]);
+
+  const handleExportExcel = async () => {
+    try {
+      toast.info("Preparing Excel file...");
+
+      const response = await fetch(
+        `${API_BASE_URL}${tabConfig[activeTab].endpoint}?page=1&limit=100000`
+      );
+
+      if (!response.ok) throw new Error("Export failed");
+
+      const result = await response.json();
+      const exportData = result.data || [];
+
+      if (exportData.length === 0) {
+        toast.warn("No data to export");
+        return;
+      }
+
+      // Pick only required fields
+      const formattedData = exportData.map((item, index) => {
+        const row = { "Sl No": index + 1 };
+
+        tabConfig[activeTab].fields.forEach((field) => {
+          row[field.toUpperCase()] = item[field] || "-";
+        });
+
+        return row;
+      });
+
+      // Create worksheet & workbook
+      const worksheet = XLSX.utils.json_to_sheet(formattedData);
+      const workbook = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(
+        workbook,
+        worksheet,
+        tabConfig[activeTab].title
+      );
+
+      // Download file
+      XLSX.writeFile(
+        workbook,
+        `${tabConfig[activeTab].title.replace(/\s+/g, "_")}_Data.xlsx`
+      );
+
+      toast.success("Excel file downloaded");
+    } catch (error) {
+      console.error(error);
+      toast.error("Failed to export Excel");
+    }
+  };
 
   return (
     <div className={styles.dashboardContainer}>
@@ -117,7 +183,9 @@ const Dashboard = () => {
         {Object.keys(tabConfig).map((tabKey) => (
           <div
             key={tabKey}
-            className={`${styles.card} ${activeTab === tabKey ? styles.active : ""}`}
+            className={`${styles.card} ${
+              activeTab === tabKey ? styles.active : ""
+            }`}
             onClick={() => handleTabClick(tabKey)}
           >
             {tabConfig[tabKey].title}
@@ -126,7 +194,15 @@ const Dashboard = () => {
       </div>
 
       <div className={styles.tableContainer}>
-        <h2 className={styles.tableTitle}>{tabConfig[activeTab].title} Details</h2>
+        <h2 className={styles.tableTitle}>
+          {tabConfig[activeTab].title} Details
+        </h2>
+
+        <div className={styles.exportWrapper}>
+          <button className={styles.exportBtn} onClick={handleExportExcel}>
+            Export to Excel
+          </button>
+        </div>
 
         {isLoading ? (
           <div className={styles.loading}>Loading...</div>
@@ -139,7 +215,9 @@ const Dashboard = () => {
                 <tr>
                   <th>Sl No</th>
                   {tabConfig[activeTab].fields.map((field) => (
-                    <th key={field}>{field.charAt(0).toUpperCase() + field.slice(1)}</th>
+                    <th key={field}>
+                      {field.charAt(0).toUpperCase() + field.slice(1)}
+                    </th>
                   ))}
                 </tr>
               </thead>
@@ -171,7 +249,9 @@ const Dashboard = () => {
 
                 <button
                   className={styles.pageBtn}
-                  onClick={() => setPage((prev) => Math.min(prev + 1, totalPages))}
+                  onClick={() =>
+                    setPage((prev) => Math.min(prev + 1, totalPages))
+                  }
                   disabled={page === totalPages}
                 >
                   Next
@@ -182,7 +262,11 @@ const Dashboard = () => {
         )}
       </div>
 
-      <ToastContainer position="bottom-right" autoClose={3000} theme="colored" />
+      <ToastContainer
+        position="bottom-right"
+        autoClose={3000}
+        theme="colored"
+      />
     </div>
   );
 };

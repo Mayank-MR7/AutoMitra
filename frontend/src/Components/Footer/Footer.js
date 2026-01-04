@@ -24,8 +24,8 @@ const Footer = () => {
           <span role="img" aria-label="email">
             📧
           </span>{" "}
-          <a href="mailto:contact@hiremechanics.com">
-            contact@hiremechanics.com
+          <a href="mailto:admin@automitraa.com ">
+            admin@automitraa.com 
           </a>
         </p>
         <p>
@@ -33,11 +33,11 @@ const Footer = () => {
             🌐
           </span>{" "}
           <a
-            href="https://www.hire-mechanics.com"
+            href="https://www.automitraa.com"
             target="_blank"
             rel="noopener noreferrer"
           >
-            www.hire-mechanics.com
+            www.automitraa.com
           </a>
         </p>
       </div>
