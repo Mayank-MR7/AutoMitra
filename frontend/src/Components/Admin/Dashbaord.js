@@ -18,41 +18,47 @@ const Dashboard = () => {
   const inactivityTimer = useRef(null);
 
   const tabConfig = useMemo(
-    () => ({
-      hire: {
-        title: "Get Hired",
-        endpoint: "/api/hire/basic",
-        fields: ["name", "phone", "email", "city", "experience"],
-      },
-      mechanic: {
-        title: "Hire Mechanic",
-        endpoint: "/api/mechanic/basic",
-        fields: ["name", "phone", "email", "city", "service"],
-      },
-      insurance: {
-        title: "Insurance Claim",
-        endpoint: "/api/insurance/basic",
-        fields: [
-          "insuredName",
-          "policyNumber",
-          "contactPersonNumber",
-          "vehicleNumber",
-          "accidentDate",
-        ],
-      },
-      franchise: {
-        title: "Get Franchise",
-        endpoint: "/api/franchise/basic",
-        fields: ["name", "phone", "email", "city"],
-      },
-      contact: {
-        title: "Contact Us",
-        endpoint: "/api/contact/basic",
-        fields: ["name", "phone", "email", "comment"],
-      },
-    }),
-    []
-  );
+  () => ({
+    hire: {
+      title: "Get Hired",
+      endpoint: "/api/hire/basic",
+      exportEndpoint: "/api/hire",
+      fields: ["name", "phone", "email", "city", "experience"],
+    },
+    mechanic: {
+      title: "Hire Mechanic",
+      endpoint: "/api/mechanic/basic",
+      exportEndpoint: "/api/mechanic",
+      fields: ["name", "phone", "email", "city", "service"],
+    },
+    insurance: {
+      title: "Insurance Claim",
+      endpoint: "/api/insurance/basic",
+      exportEndpoint: "/api/insurance",
+      fields: [
+        "insuredName",
+        "policyNumber",
+        "contactPersonNumber",
+        "vehicleNumber",
+        "accidentDate",
+      ],
+    },
+    franchise: {
+      title: "Get Franchise",
+      endpoint: "/api/franchise/basic",
+      exportEndpoint: "/api/franchise",
+      fields: ["name", "phone", "email", "city"],
+    },
+    contact: {
+      title: "Contact Us",
+      endpoint: "/api/contact/basic",
+      exportEndpoint: "/api/contact",
+      fields: ["name", "phone", "email", "comment"],
+    },
+  }),
+  []
+);
+
 
   // Fetch data
   useEffect(() => {
@@ -125,64 +131,62 @@ const Dashboard = () => {
   }, [navigate]);
 
   const handleExportExcel = async () => {
-    try {
-      toast.info("Preparing Excel file...");
+  try {
+    toast.info("Preparing Excel file...");
 
-      const response = await fetch(
-        `${API_BASE_URL}${tabConfig[activeTab].endpoint}?page=1&limit=100000`
-      );
+    const exportUrl =
+      API_BASE_URL + tabConfig[activeTab].exportEndpoint;
 
-      if (!response.ok) throw new Error("Export failed");
+    const response = await fetch(exportUrl);
+    if (!response.ok) throw new Error("Export failed");
 
-      const result = await response.json();
-      const exportData = result.data || [];
+    const result = await response.json();
+    const exportData = result.data || [];
 
-      if (exportData.length === 0) {
-        toast.warn("No data to export");
-        return;
-      }
+    if (exportData.length === 0) {
+      toast.warn("No data to export");
+      return;
+    }
 
-      // 🔹 Get ALL keys dynamically from first object
-      const allKeys = Object.keys(exportData[0]);
+    const allKeys = Object.keys(exportData[0]);
 
-      // 🔹 Build rows dynamically
-      const formattedData = exportData.map((item, index) => {
-        const row = { "Sl No": index + 1 };
+    const formattedData = exportData.map((item, index) => {
+      const row = { "Sl No": index + 1 };
 
-        allKeys.forEach((key) => {
-          let value = item[key];
+      allKeys.forEach((key) => {
+        let value = item[key];
 
-          // Handle objects & arrays safely
-          if (typeof value === "object" && value !== null) {
-            value = JSON.stringify(value);
-          }
+        if (typeof value === "object" && value !== null) {
+          value = JSON.stringify(value);
+        }
 
-          row[key.replace(/_/g, " ").toUpperCase()] = value ?? "-";
-        });
-
-        return row;
+        row[key.replace(/_/g, " ").toUpperCase()] = value ?? "-";
       });
 
-      // Create Excel file
-      const worksheet = XLSX.utils.json_to_sheet(formattedData);
-      const workbook = XLSX.utils.book_new();
-      XLSX.utils.book_append_sheet(
-        workbook,
-        worksheet,
-        tabConfig[activeTab].title
-      );
+      return row;
+    });
 
-      XLSX.writeFile(
-        workbook,
-        `${tabConfig[activeTab].title.replace(/\s+/g, "_")}_FULL_DATA.xlsx`
-      );
+    const worksheet = XLSX.utils.json_to_sheet(formattedData);
+    const workbook = XLSX.utils.book_new();
 
-      toast.success("Excel file downloaded");
-    } catch (error) {
-      console.error(error);
-      toast.error("Failed to export Excel");
-    }
-  };
+    XLSX.utils.book_append_sheet(
+      workbook,
+      worksheet,
+      tabConfig[activeTab].title
+    );
+
+    XLSX.writeFile(
+      workbook,
+      `${tabConfig[activeTab].title.replace(/\s+/g, "_")}_FULL_DATA.xlsx`
+    );
+
+    toast.success("Excel file downloaded");
+  } catch (error) {
+    console.error(error);
+    toast.error("Failed to export Excel");
+  }
+};
+
 
   return (
     <div className={styles.dashboardContainer}>
